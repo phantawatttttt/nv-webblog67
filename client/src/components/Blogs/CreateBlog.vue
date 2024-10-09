@@ -3,8 +3,8 @@
     <h1>Create Blog</h1>
     <form v-on:submit.prevent="createBlog">
       <p>
-        title:
-        <input type="text" v-model="blog.title" />
+        Tree Name:
+        <input type="text" v-model="blog.treeName" required />
       </p>
       <transition name="fade">
         <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
@@ -51,22 +51,27 @@
         </transition-group>
         <div class="clearfix"></div>
       </div>
-      <p>
-        <strong>content:</strong>
-      </p>
-      <vue-ckeditor
-        v-model.lazy="blog.content"
-        :config="config"
-        @blur="onBlur($event)"
-        @focus="onFocus($event)"
-      />
+     
       <p>
         category:
         <input type="text" v-model="blog.category" />
       </p>
       <p>
-        status:
-        <input type="text" v-model="blog.status" />
+        Soil Type:
+        <select v-model="blog.soilType" required>
+          <option value="sand">ดินทราย</option>
+          <option value="clay">ดินเหนียว</option>
+          <option value="loam">ดินร่วน</option>
+        </select>
+      </p>
+      <p>
+        Fertilizer Type:
+        <select v-model="blog.fertilizerType" required>
+          <option value="15-15-15">สูตร 15-15-15</option>
+          <option value="18-20-0">สูตร 18-20-0</option>
+          <option value="46-0-0">สูตร 46-0-0</option>
+          <option value="13-13-21">สูตร 13-13-21</option>
+        </select>
       </p>
       <p>
         <button type="submit">create blog</button>
@@ -97,12 +102,12 @@ export default {
       pictures: [],
       pictureIndex: 0,
       blog: {
-        title: "",
+        treeName: "",
         thumbnail: "null",
         pictures: "null",
-        content: "",
+        soilType: "",
         category: "",
-        status: "saved",
+        fertilizerType: "",
       },
       config: {
         toolbar: [

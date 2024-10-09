@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="nv-navbar">
+      <img src="@/assets/logoo.png"alt="Logo" class="logo" />
       <ul class="nav">
         <li><router-link :to="{ name: 'blogs' }">Blogs</router-link></li>
         <li><router-link :to="{ name: 'users' }">Users</router-link></li>
@@ -28,10 +29,15 @@ export default {
 </script>
 <style scoped>
 .nv-navbar {
-  background-color: palegoldenrod;
-  width: 100%;
-  height: 20px;
-  padding: 10px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* จัดตำแหน่งไปทางขวา */
+  background-color: #815b45; /* ปรับสีพื้นหลังตามที่ต้องการ */
+  padding: 10px 20px;
+}
+.logo {
+  width: 20px; /* ขนาดโลโก้ */
+  height: 30px;
 }
 .nv-navbar .nav {
   list-style: none;
@@ -39,13 +45,18 @@ export default {
   padding: 0;
   float: left;
 }
+.logo {
+  width: 50px; /* ขยายเต็มความกว้างของแถบเมนู */
+  height: 50px;/* ขยายเต็มความสูงของแถบเมนู */
+  object-fit: cover; 
+}
 .nv-navbar .nav li {
   float: left;
 }
 .nv-navbar .nav li a {
   padding: 10px;
   text-decoration: none;
-  color: gray;
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 .nv-navbar .nav li a:hover {
@@ -54,7 +65,7 @@ export default {
   color: darkslategrey;
 }
 .nv-navbar .nav li a.router-link-active {
-  background-color: gold;
+  background-color: rgb(74, 134, 84);
   color: darkslategrey;
 }
 .clearfix {

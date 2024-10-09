@@ -2,13 +2,21 @@
     <div>
         <h1>Show Blog</h1>
         <p>id: {{ blog.id }}</p>
-        <p>title: {{ blog.title }}</p>
-        <p>content: {{ blog.content }}</p>
+        <p>Tree Name: {{ blog.treeName }}</p>
         <p>category: {{ blog.category }}</p>
-        <p>status: {{ blog.status }}</p>
+        <p>Soil Type: {{ blog.soilType }}</p>
+        <p>Fertilizer: {{ blog.fertilizerType }}</p>
+        <p>Pictures:</p>
+        
+        <div v-if="blog.pictures && blog.pictures.length">
+            <div v-for="(picture, index) in blog.pictures" :key="index">
+                <img :src="picture" alt="Blog picture" class="blog-picture" />
+            </div>
+        </div>
+        <p v-else>ไม่พบรูปภาพ</p>
+
         <p>
-        <button v-on:click="navigateTo('/blog/edit/'+ blog.id)">แก้ไข
-        blog</button>
+        <button v-on:click="navigateTo('/blog/edit/'+ blog.id)">แก้ไขั blog</button>
         <button v-on:click="navigateTo('/blogs')">กลับ </button>
         </p>
     </div>
