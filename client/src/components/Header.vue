@@ -32,7 +32,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between; /* จัดตำแหน่งไปทางขวา */
-  background-color: #815b45; /* ปรับสีพื้นหลังตามที่ต้องการ */
+  background-color: #316729; /* ปรับสีพื้นหลังตามที่ต้องการ */
   padding: 10px 20px;
 }
 .logo {
@@ -65,7 +65,7 @@ export default {
   color: darkslategrey;
 }
 .nv-navbar .nav li a.router-link-active {
-  background-color: rgb(74, 134, 84);
+  background-color: #82B055;
   color: darkslategrey;
 }
 .clearfix {
