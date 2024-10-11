@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2>วิธีการปลูกต้นไม้</h2>
         <p><button v-on:click="logout">Logout</button></p>
+        <h2>วิธีการปลูกต้นไม้</h2>
         <h4>จำนวน blog {{blogs.length}}</h4>
         <p><button class="btn success" v-on:click="navigateTo('/blog/create')">สร้าง blog</button></p>
         <div id="templatemo_content_new">
@@ -87,11 +87,15 @@ export default {
 }
 </script>
 <style scoped>
+body {
+    background-color: #c99191; /* สีน้ำตาล */
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #2d8f6e;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -111,7 +115,7 @@ h2, h4 {
     border-bottom: 3px solid #e4e4e4;
     border-bottom-right-radius: 24px;
     margin: 20px 2.2% 20px 0px;
-    width: 70%;
+    width: 20%;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -121,6 +125,13 @@ h2, h4 {
 .thumbnail_270:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .thumbnail-pic img {
@@ -210,4 +221,5 @@ hr {
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
+
 </style>
