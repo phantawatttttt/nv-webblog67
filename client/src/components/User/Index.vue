@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Get All Users</h1>
-    <div><button v-on:click="navigateTo('/user/create')">สร้างผู้ใช้</button></div>
     <hr>
     <div v-if="users.length">
       <div><b>จำนวนผู้ใช้งาน:</b> {{ users.length }}</div>

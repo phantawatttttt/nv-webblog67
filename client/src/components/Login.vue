@@ -146,7 +146,7 @@ h1 {
 }
  
 .error {
-  color: red;
+  color: rgb(223, 19, 19);
   margin-top: 10px;
   font-size: 14px;
 }
