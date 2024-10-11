@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Edit Blog</h1>
     <form v-on:submit.prevent="editBlog">
       <p>
         Tree Name:
-        <input type="text" v-model="blog.treeName"  />
+        <input type="text" v-model="blog.treeName" />
       </p>
       <transition name="fade">
         <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
@@ -18,14 +18,10 @@
             multiple
             :name="uploadFieldName"
             :disabled="isSaving"
-            @change="
-              filesChange($event.target.name, $event.target.files);
-              fileCount = $event.target.files.length;
-            "
+            @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
             accept="image/*"
             class="input-file"
           />
-          <!-- <p v-if="isInitial || isSuccess"> -->
           <p v-if="isInitial">
             Drag your file(s) here to begin<br />
             or click to browse
@@ -35,7 +31,7 @@
         </div>
       </form>
       <transition-group tag="ul" class="pictures">
-        <li v-for="picture in pictures" v-bind:key="picture.id">
+        <li v-for="picture in pictures" :key="picture.id">
           <img
             style="margin-bottom: 5px"
             :src="BASE_URL + picture.name"
@@ -49,7 +45,7 @@
         </li>
       </transition-group>
       
-      <p>category: <input type="text" v-model="blog.category" /></p>
+      <p>Category: <input type="text" v-model="blog.category" /></p>
       <p>
         Soil Type:
         <select v-model="blog.soilType" required>
@@ -68,8 +64,8 @@
         </select>
       </p>
       <p>
-        <button type="submit">update blog</button>
-        <button v-on:click="navigateTo('/blogs')">กลับ</button>
+        <button type="submit">Update Blog</button>
+        <button v-on:click="navigateTo('/blogs')">Back</button>
       </p>
     </form>
   </div>
@@ -359,54 +355,77 @@ export default {
 };
 </script>
 <style scoped>
-.dropbox {
-  outline: 2px dashed grey; /* the dash box */
-  outline-offset: -10px;
-  background: lemonchiffon;
-  color: dimgray;
-  padding: 10px 10px;
-  min-height: 200px; /* minimum height */
-  position: relative;
-  cursor: pointer;
-}
-.input-file {
-  opacity: 0; /* invisible but it's there! */
-  width: 100%;
-  height: 200px;
-  position: absolute;
-  cursor: pointer;
-}
-
-.dropbox:hover {
-  background: khaki; /* when mouse over to the drop zone, change color 
-*/
-}
-
-.dropbox p {
-  font-size: 1.2em;
+/* Container Styling */
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(145deg, #e0ffe0, #d0e6d0);
+  border-radius: 25px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
   text-align: center;
-  padding: 50px 0;
+  position: relative;
 }
-ul.pictures {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  float: left;
-  padding-top: 10px;
-  padding-bottom: 10px;
+
+/* Header Styling */
+h1 {
+  font-size: 2.8em;
+  color: #2e7d32;
+  margin-bottom: 35px;
+  font-weight: bold;
+  position: relative;
 }
-ul.pictures li {
-  float: left;
+
+/* Card Styling */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-ul.pictures li img {
-  max-width: 180px;
-  margin-right: 20px;
+
+/* Input Field Styling */
+input[type="text"], select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: 2px solid #81c784;
+  border-radius: 15px;
+  background: #f1f8e9;
 }
-.clearfix {
-  clear: both;
+
+/* Button Styling */
+button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(145deg, #4caf50, #388e3c);
 }
-/* thumbnail */
+
+/* Thumbnail Styling */
+.thumbnail-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%; /* กำหนดขนาดสูงสุดให้พอดีกับ card */
+    margin-bottom: 15px;
+    overflow: hidden; /* ซ่อนส่วนที่เกินออกมาจาก card */
+}
+
 .thumbnail-pic img {
-  width: 200px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* ตัดขอบรูปให้พอดีในกรณีที่รูปไม่พอดี */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 </style>

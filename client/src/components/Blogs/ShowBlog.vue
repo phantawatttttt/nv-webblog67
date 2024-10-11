@@ -1,34 +1,28 @@
 <template>
-    <div>
-        <h1>รายละเอียด</h1>
+    <div class="card">
         <div v-if="blog">
-            <p>ไอดี: {{ blog.id }}</p>
-            <p>ชื่อต้นไม้: {{ blog.treeName }}</p>
-            <p>ประเภท: {{ blog.category }}</p>
-            <p>ประเภทดิน: {{ blog.soilType }}</p>
-            <p>ประเภทปุ๋ย: {{ blog.fertilizerType }}</p>
-            <p>รูปภาพ:</p>
-            
-            <!-- แสดงรูปภาพของบล็อก -->
             <transition name="fade">
-    <div v-if="blog.thumbnail && blog.thumbnail !== 'null'" class="thumbnail-pic">
-        <a :href="'/blog/' + blog.id">
-            <img :src="BASE_URL + blog.thumbnail" :alt="blog.treeName" :title="blog.treeName" border="0" width="360" height="360" />
-        </a>
-    </div>
-    <p v-else>ไม่พบภาพ</p>
-</transition>
-            <!-- ปุ่มการกระทำ -->
-            <p class="actions">
-                <button class="btn warning" v-on:click="navigateTo('/blog/edit/' + blog.id)">แก้ไขบล็อก</button>
-                <button class="btn primary" v-on:click="navigateTo('/blogs')">กลับไปที่บล็อก</button>
-            </p>
+                <div v-if="blog.thumbnail && blog.thumbnail !== 'null'" class="thumbnail-pic">
+                    <img :src="BASE_URL + blog.thumbnail" :alt="blog.treeName" :title="blog.treeName" />
+                </div>
+                <p v-else>ไม่พบภาพ</p>
+            </transition>
+            <h2>{{ blog.treeName.toUpperCase() }}</h2>
+            <p>Tree Name: {{ blog.treeName }}</p>
+            <p>Category: {{ blog.category }}</p>
+            <p>Soil Type: {{ blog.soilType }}</p>
+            <p>Fertilizer Type: {{ blog.fertilizerType }}</p>
+            <div class="actions">
+                <button class="btn warning" v-on:click="navigateTo('/blog/edit/' + blog.id)">แก้ไข BLOG</button>
+                <button class="btn danger" v-on:click="deleteBlog(blog)">ลบ BLOG</button>
+            </div>
         </div>
         <div v-else>
             <p>กำลังโหลดข้อมูล...</p>
         </div>
     </div>
 </template>
+
 
 <script>
 import BlogsService from '@/services/BlogsService'
@@ -58,47 +52,86 @@ export default {
 </script>
 
 <style scoped>
-.picture-container {
-    margin-bottom: 10px;
+/* Card Styling */
+.card {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-.blog-picture {
-    max-width: 100%;
+/* Image Styling */
+.thumbnail-pic {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.thumbnail-pic img {
+    width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+.thumbnail-pic:hover img {
+    transform: scale(1.05);
 }
 
+/* Text Styling */
+.card h2 {
+    font-size: 1.8em;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.card p {
+    font-size: 1em;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
 .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 20px;
 }
-
 .btn {
-    padding: 8px 16px;
+    padding: 12px 30px;
     border: none;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 30px;
+    font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn.primary {
-    background-color: #3498db;
     color: #fff;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
 }
-
-.btn.primary:hover {
-    background-color: #2980b9;
-}
-
 .btn.warning {
-    background-color: #f39c12;
-    color: #fff;
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+}
+.btn.warning:hover {
+    background: linear-gradient(145deg, #e67e22, #d35400);
+    transform: translateY(-3px);
+}
+.btn.danger {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+}
+.btn.danger:hover {
+    background: linear-gradient(145deg, #c0392b, #a93226);
+    transform: translateY(-3px);
 }
 
-.btn.warning:hover {
-    background-color: #e67e22;
-}
+
 </style>

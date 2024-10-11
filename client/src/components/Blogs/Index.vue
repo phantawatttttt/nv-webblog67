@@ -1,7 +1,8 @@
 <template>
     <div>
-        <p><button v-on:click="logout">Logout</button></p>
-        <h2>วิธีการปลูกต้นไม้</h2>
+        
+
+        <h1>วิธีการปลูกต้นไม้</h1>
         <h4>จำนวน blog {{blogs.length}}</h4>
         <p><button class="btn success" v-on:click="navigateTo('/blog/create')">สร้าง blog</button></p>
         <div id="templatemo_content_new">
@@ -23,17 +24,13 @@
 
                 <!-- รายละเอียดเพิ่มเติม -->
                 <div class="blog-details">
-                    <p>id: {{ blog.id }}</p>
                     <p>Tree Name: {{ blog.treeName }}</p>
                     <p>Category: {{ blog.category }}</p>
                     <p>Soil Type: {{ blog.soilType }}</p>
                     <p>Fertilizer Type: {{ blog.fertilizerType }}</p>
                 </div>
 
-                <!-- คำอธิบายหรือเนื้อหาของบล็อก -->
-                <div class="tn_desc">
-                    <p>{{ blog.description || 'No description available.' }}</p>
-                </div>
+                
     
                 <!-- ปุ่มการกระทำ -->
                 <p class="actions">
@@ -59,13 +56,7 @@ export default {
         this.blogs = (await BlogsService.index()).data
     },
     methods: {
-        logout () {
-            this.$store.dispatch('setToken', null)
-            this.$store.dispatch('setBlog', null)
-            this.$router.push({
-                name: 'login'
-            })
-        },
+       
         navigateTo (route) {
             this.$router.push(route)
         },
@@ -87,44 +78,49 @@ export default {
 }
 </script>
 <style scoped>
-body {
-    background-color: #c99191; /* สีน้ำตาล */
-}
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #2d8f6e;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h2, h4 {
-    text-align: center;
-    color: #333;
-}
-
-.thumbnail_270 {
-    line-height: 1.7em;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    float: left;
-    position: relative;
-    background-color: #F4F4F4;
-    border-bottom: 3px solid #e4e4e4;
-    border-bottom-right-radius: 24px;
-    margin: 20px 2.2% 20px 0px;
-    width: 20%;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
 
+h1, h4 {
+    text-align: center; /* จัดให้อยู่ตรงกลาง */
+    color: #ffffff; /* ตั้งค่าสีเป็นสีขาว */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+
+.thumbnail_270 {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 14px;
+    float: left;
+    position: relative;
+    background: linear-gradient(145deg, #e0ca9d, #eeeeee);
+    border-bottom: 5px solid #6fdb7e;
+    border-radius: 15px;
+    margin: 20px 1%;
+    width: 28%;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+}
 .thumbnail_270:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(145deg, #f1f1f1, #dcdcdc);
 }
 
 .thumbnail-pic {
@@ -132,94 +128,91 @@ h2, h4 {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-.thumbnail-pic img {
-    width: 100%;
-    max-width: 360px;
-    height: auto;
-    border-radius: 4px;
     margin-bottom: 15px;
 }
-
-.blog-card {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.thumbnail-pic img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.thumbnail-pic img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .blog-details {
-    margin-bottom: 15px;
     color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5em;
 }
 
 .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .btn {
-    padding: 8px 16px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 50px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
 .btn.primary {
-    background-color: #3498db;
+    background: linear-gradient(145deg, #3498db, #2980b9);
     color: #fff;
 }
-
 .btn.primary:hover {
-    background-color: #2980b9;
+    background: linear-gradient(145deg, #2980b9, #216fa6);
 }
-
 .btn.success {
-    background-color: #2ecc71;
+    background: linear-gradient(145deg, #2ecc71, #27ae60);
     color: #fff;
 }
-
 .btn.success:hover {
-    background-color: #27ae60;
+    background: linear-gradient(145deg, #27ae60, #219150);
 }
-
 .btn.warning {
-    background-color: #f39c12;
+    background: linear-gradient(145deg, #f39c12, #e67e22);
     color: #fff;
 }
-
 .btn.warning:hover {
-    background-color: #e67e22;
+    background: linear-gradient(145deg, #e67e22, #d35400);
 }
-
 .btn.danger {
-    background-color: #e74c3c;
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
     color: #fff;
 }
-
 .btn.danger:hover {
-    background-color: #c0392b;
+    background: linear-gradient(145deg, #c0392b, #a93226);
 }
 
 hr {
     border: none;
     border-top: 1px solid #e0e0e0;
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s;
+    transition: opacity 0.6s, transform 0.4s;
 }
-
 .fade-enter, .fade-leave-to {
     opacity: 0;
+    transform: scale(0.95);
 }
 
 </style>
