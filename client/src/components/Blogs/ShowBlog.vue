@@ -44,10 +44,25 @@ export default {
         }
     },
     methods: {
-        navigateTo(route) {
-            this.$router.push(route)
+    navigateTo(route) {
+        this.$router.push(route);
+    },
+    async deleteBlog(blog) {
+        let result = confirm("ต้องการลบสินค้านี้หรือไม่?");
+        if (result) {
+            try {
+                await BlogsService.delete(blog);
+                this.$router.push('/blog'); // หลังจากลบสำเร็จ จะกลับไปที่หน้า index ของ blog
+            } catch (err) {
+                console.log(err);
+            }
         }
+    },
+    async refreshData() {
+        this.blogs = (await BlogsService.index()).data;
     }
+}
+
 }
 </script>
 

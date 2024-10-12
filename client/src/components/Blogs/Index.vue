@@ -32,12 +32,7 @@
 
                 
     
-                <!-- ปุ่มการกระทำ -->
-                <p class="actions">
-                    <button class="btn warning" v-on:click="navigateTo('/blog/edit/' + blog.id)">แก้ไข blog</button>
-                    <button class="btn danger" v-on:click="deleteBlog(blog)">ลบ blog</button>
-                </p>
-
+                
                 <hr>
             </div>
         </div>
