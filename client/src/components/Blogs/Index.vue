@@ -94,7 +94,7 @@ export default {
 
 h1, h4 {
     text-align: center; /* จัดให้อยู่ตรงกลาง */
-    color: #ffffff; /* ตั้งค่าสีเป็นสีขาว */
+    color: #ece5ce; /* ตั้งค่าสีเป็นสีขาว */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -107,7 +107,7 @@ h1, h4 {
     font-size: 14px;
     float: left;
     position: relative;
-    background: linear-gradient(145deg, #e0ca9d, #eeeeee);
+    background: linear-gradient(145deg, #608555, #eeeeee);
     border-bottom: 5px solid #6fdb7e;
     border-radius: 15px;
     margin: 20px 1%;

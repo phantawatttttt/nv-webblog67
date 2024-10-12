@@ -38,7 +38,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #82B055; /* สีเขียวเข้มเพื่อธีมต้นไม้ */
+  background-color: #474031; /* สีเขียวเข้มเพื่อธีมต้นไม้ */
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -77,8 +77,8 @@ export default {
 
 /* Hover Effect for Links */
 .nv-navbar .nav li a:hover {
-  background-color: #66bb6a; /* สีเขียวอ่อน */
-  color: #1b5e20; /* สีเขียวเข้ม */
+  background-color: #bba466; /* สีเขียวอ่อน */
+  color: #5e3b1b; /* สีเขียวเข้ม */
 }
 
 /* Active Link Styling */
